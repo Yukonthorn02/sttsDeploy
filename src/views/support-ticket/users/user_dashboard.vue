@@ -63,7 +63,7 @@
         footer
         header
         cleaner
-        
+
         :items="items"
         :columns="columns"
         columnFilter
@@ -81,7 +81,7 @@
           hover: true,
         }"
       >
-      
+
       <template #status="{ item }">
         <td>
           <CBadge :color="getBadge(item.STATUS)">{{ item.STATUS }}</CBadge>
@@ -157,7 +157,7 @@ export default {
     data(){
       return {
             data_array:[],
-            
+
             tkt_number: '',
             tkt_description: '',
             tkt_picture: '',
@@ -180,15 +180,15 @@ export default {
     setup() {
         const columns = [
             { key: '#',_style: { width: '5%' }},
-            { key: 'TicketID',_style: { width: '10%' }},            
+            { key: 'TicketID',_style: { width: '10%' }},
             { key: 'TITLE', _style: { width: '10%' } },
             { key: 'START DATE', _style: { width: '11%' } },
             { key: 'STATUS', _style: { width: '10%' } },
             { key: 'TYPE', _style: { width: '10%' } },
             { key: 'BOOKMARK', _style: { width: '10%' } }
-          
-            
-     
+
+
+
         ];
         const getBadge = (tkt_status) => {
           switch (tkt_status) {
@@ -222,7 +222,7 @@ export default {
             console.log(error)
           }
         }
-        
+
         return {
             LGblue,
             LGgreen,
@@ -268,21 +268,6 @@ export default {
         } catch (error) {
           console.error('Error fetching data:', error);
         }
-      },
-
-
-
-      async getTicket(){
-        const ticket= await axios.get('http://localhost:3000/mongoose/get/stts_tickets/')
-
-        .then(response => {
-          // เมื่อรับข้อมูลแล้ว ให้เก็บข้อมูลในตัวแปร array
-          this.dataArray = response.data;
-        })
-        .catch(error => {
-          console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
-        });
-
       },
 
 
