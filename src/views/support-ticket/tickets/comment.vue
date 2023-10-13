@@ -374,7 +374,6 @@ export default {
         case 'docx':
           return require('@/assets/images/doc_icon.png');
         case 'jpg':
-        return require('@/assets/images/Jpeg_icon.png');
         case 'jpeg':
           return require('@/assets/images/jpeg_icon.png');
         case 'png':
