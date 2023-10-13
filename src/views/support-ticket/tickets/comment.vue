@@ -18,8 +18,8 @@
         <!-- <CImage class="Avatar_4" :src="Avatar_4" /> -->
         <CCardImage class="Icon_user_man" :src="Icon_user_man" style="padding: -4px" />
         <CCol style="padding: 4px">
-          <b> Settawut101</b>
-          <p class="small">settawut@gmail.com</p>
+          <b> {{firstname}}</b>
+          <p class="small">{{ email }}</p>
         </CCol>
         <CCol class="text-end p-3" style="margin-right: 2%">
           <b>Jul 17, 2023 &nbsp; </b>
@@ -46,17 +46,16 @@
               <CCardBody style="margin-left: 2%">
                 <CCol class="text-start" style="padding: -3px">
                   <b style="font-size: 20px"> Title : </b>
-                  <CCradText> Internet speed is very low</CCradText>
+                  <CCradText> {{title}}</CCradText>
                 </CCol>
                 <CCol class="text-start" style="padding: -3px">
                   <b style="font-size: 20px"> Type : </b>
-                  <CCradText> Service Request </CCradText>
+                  <CCradText> {{ type }} </CCradText>
                 </CCol>
                 <CCol class="text-start" style="padding: -3px">
                   <b style="font-size: 20px"> Description : </b>
                   <CCradText>
-                    The internet is slower than usual, please check the
-                    internet.
+                    {{description}}
                   </CCradText>
                 </CCol>
               </CCardBody>
@@ -116,7 +115,7 @@
               </CButton>
               <span class="text-end" style="margin-left: 710px;">Character count: {{ characterCount }} / 200</span>
               <span id="selectedImage">{{ imageName }}</span>
-              <span v-if="link !== ''"> | <a >link : {{ link }}</a></span>
+              <span v-if="link !== ''"> | <a>link : {{ link }}</a></span>
             </div>
             <div class="col">
               <div class="avatar">
@@ -143,7 +142,7 @@
                     {{ item.link }}
                   </a>
                   <a v-if="item.image">
-                    <CImage :src="item.image" alt="Comment Image" style="max-width: 400px; height: auto;" />
+                    <CImage :src="item.image" alt="Comment Image" style="max-width: auto; height: 300px;" />
                   </a>
                 </div>
                 <!-- <template v-if="item.link">
@@ -163,6 +162,7 @@
         </div>
       </CCardBody>
     </CCard>
+
   </div>
 </template>
 
@@ -180,6 +180,7 @@ import Attach_Image from '@/assets/images/Attach_Image.png'
 import { CButton, CFormInput } from '@coreui/vue-pro'
 import insert_link from '@/assets/images/insert_link.png'
 import Attach_File from '@/assets/images/Attach_File.png'
+import axios from 'axios';
 import {
   CAvatar,
   CCardBody,
@@ -214,6 +215,7 @@ export default {
     CButton,
   },
   data() {
+
     return {
       visibleA: true,
       visibleB: true,
@@ -360,7 +362,7 @@ export default {
 
     },
     async isImageFile(filename) {
-      const imageExtensions = ['doc', 'docx', 'jpeg', 'png', 'pdf']; // รายการส่วนขยายของไฟล์รูปภาพ
+      const imageExtensions = ['jpg', 'jpeg', 'png', 'gif']; // รายการส่วนขยายของไฟล์รูปภาพ
       const fileExtension = filename.split('.').pop().toLowerCase();
       return imageExtensions.includes(fileExtension);
     },
@@ -374,7 +376,7 @@ export default {
         case 'jpg':
         return require('@/assets/images/Jpeg_icon.png');
         case 'jpeg':
-          return require('@/assets/images/Jpeg_icon.png');
+          return require('@/assets/images/jpeg_icon.png');
         case 'png':
           return require('@/assets/images/png_icon.png');
         case 'pdf':
@@ -387,6 +389,38 @@ export default {
     async openLink(link) {
       window.open(link, '_blank');
     },
+    async getTicket(){
+        try {
+
+          const ticketId=this.ticketIdId;
+          console.log(ticketId);
+
+          const response = await axios.post(`http://localhost:3000/mongoose/getOne/stts_tickets/${ticketId}`,{populate: ["tkt_act"] });
+          console.log(response.data);
+
+          this.type = response.data.tkt_types;
+          this.description = response.data.tkt_description;
+          this.title = response.data.tkt_title;
+          this.priorities = response.data.tkt_priorities;
+          this.picture = response.data.tkt_picture;
+          this.date = response.data.tkt_time;
+          this.avatar = response.data.tkt_act.act_picture;
+          this.email = response.data.tkt_act.act_email_address;
+          this.firstname = response.data.tkt_act.act_first_name_eng;
+
+          // นำข้อมูลที่ได้รับมาใส่ในตัวแปร items
+
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      },
+
+  },
+  mounted(){
+    const itemId = this.$route.params.itemId;
+    this.ticketIdId=itemId;
+    this.getTicket();
+
   },
 }
 </script>
