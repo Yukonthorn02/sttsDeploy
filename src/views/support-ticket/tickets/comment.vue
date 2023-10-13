@@ -174,7 +174,7 @@ var character_counts = document.getElementById('character_counts')
 import Arrow_Left from '@/assets/images/Arrow_Left.png'
 import File_test from '@/assets/images/file_test.jpg'
 import Short from '@/assets/images/Short.jpg'
-import Icon_user_man from '@/assets/images/icon_user_man.jpg'
+import Icon_user_man from '@/assets/images/Icon_user_man.jpg'
 import commit from '@/assets/images/commit.png'
 import Attach_Image from '@/assets/images/Attach_Image.png'
 import { CButton, CFormInput } from '@coreui/vue-pro'
@@ -365,22 +365,23 @@ export default {
       return imageExtensions.includes(fileExtension);
     },
 
-    async getImageIcon(filename) {
+     getImageIcon(filename) {
       const fileExtension = filename.split('.').pop().toLowerCase();
-      switch (filename.split('.').pop().toLowerCase()) {
+      switch (fileExtension) {
         case 'doc':
         case 'docx':
-          return require('@/assets/images/Doc_icon.png');
+          return require('@/assets/images/doc_icon.png');
         case 'jpg':
+        return require('@/assets/images/Jpeg_icon.png');
         case 'jpeg':
           return require('@/assets/images/Jpeg_icon.png');
         case 'png':
-          return require('@/assets/images/Png_icon.png');
+          return require('@/assets/images/png_icon.png');
         case 'pdf':
-          return require('@/assets/images/Pdf_icon.png');
+          return require('@/assets/images/pdf_icon.png');
         // เพิ่มประเภทของไฟล์อื่นๆ ตามต้องการ
         default:
-          return require('@/assets/images/File_icon.png'); // รูปไอคอนเริ่มต้นหากไม่รู้จักประเภทของไฟล์
+          return require('@/assets/images/file_icon.png'); // รูปไอคอนเริ่มต้นหากไม่รู้จักประเภทของไฟล์
       }
     },
     async openLink(link) {
