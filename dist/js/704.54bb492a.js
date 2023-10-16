@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunk_coreui_coreui_pro_vue_admin_template"]=self["webpackChunk_coreui_coreui_pro_vue_admin_template"]||[]).push([[704],{704:function(e,u,r){function n(e,u){return null}r.r(u),r.d(u,{default:function(){return i}});var t=r(89);const _={},c=(0,t.Z)(_,[["render",n]]);var i=c}}]);
-//# sourceMappingURL=704.54bb492a.js.map
