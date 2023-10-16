@@ -34,6 +34,15 @@
     <meta name="theme-color" content="#ffffff">
   </head>
   <body>
+  <CSidebar>
+    <CSidebarNav>
+      <CNavItem href="/#/support-ticket/user/dashboard">
+        <CImage  customClassName="nav-icon" :src="Icondashboard" style="max-height: 20px; margin-left: 15px; margin-right: 15px;"/>
+        <font style="color:black;">Dashboard</font>
+      </CNavItem>
+    </CSidebarNav>
+  </CSidebar>
+
     <noscript>
       <strong>We're sorry but this app doesn't work properly without
         JavaScript enabled.</strong>
@@ -42,10 +51,8 @@
       <h1>
         Hello firebase
       </h1>
-      <CNavItem href="/#/support-ticket/ticket/book" style="padding-top:600px">
-        <CImage  customClassName="nav-icon" :src="Iconlogout" style="max-height: 20px; margin-left: 15px; margin-right: 15px;"/>
-        <font color="red" @click="onLogoutClick()">logout</font>
-      </CNavItem>
+
+
     </div>
     <!-- built files will be auto injected -->
   </body>
