@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_coreui_coreui_pro_vue_admin_template"]=self["webpackChunk_coreui_coreui_pro_vue_admin_template"]||[]).push([[4756],{4756:function(e,u,n){n.r(u),n.d(u,{default:function(){return l}});var r=n(3396);const t=(0,r._)("h4",null,"HELLO",-1),_=[t];function c(e,u){return(0,r.wg)(),(0,r.iD)("div",null,_)}var i=n(89);const o={},a=(0,i.Z)(o,[["render",c]]);var l=a}}]);
+//# sourceMappingURL=4756.992bea6a.js.map
